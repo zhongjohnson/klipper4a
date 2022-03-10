@@ -67,6 +67,7 @@ create_klipper_virtualenv(){
   status_msg "Installing python virtual environment..."
   # Create virtualenv if it doesn't already exist
   [ ! -d "${KLIPPY_ENV}" ] && virtualenv -p python2 "${KLIPPY_ENV}"
+  "${KLIPPY_ENV}"/bin/python -m pip install --upgrade pip
   # Install/update dependencies
   "${KLIPPY_ENV}"/bin/pip install -r "${KLIPPER_DIR}"/scripts/klippy-requirements.txt
 }
@@ -123,12 +124,12 @@ moonraker_setup(){
 create_moonraker_virtualenv(){
   status_msg "Installing python virtual environment..."
   # Create virtualenv if it doesn't already exist
-  if [ ! -d "$MOONRAKER_ENV" ]; then
-    virtualenv -p /usr/bin/python3 "$MOONRAKER_ENV"
+  if [ ! -d "${MOONRAKER_ENV}" ]; then
+    virtualenv -p /usr/bin/python3 "${MOONRAKER_ENV}"
   fi
 
   ### Install/update dependencies
-  "$MOONRAKER_ENV"/bin/pip install -r "$MOONRAKER_DIR"/scripts/moonraker-requirements.txt
+  "${MOONRAKER_ENV}"/bin/pip install -r "${MOONRAKER_DIR}"/scripts/moonraker-requirements.txt
 }
 
 create_moonraker_conf(){
