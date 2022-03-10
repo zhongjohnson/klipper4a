@@ -47,7 +47,9 @@ klipper_setup(){
   ### step 1: clone klipper
   status_msg "Downloading Klipper ..."
   ### clone into fresh klipper dir
-  cd "${HOME}" && git clone "$KLIPPER_REPO"
+  if [ ! -f "${KLIPPER_DIR}"/scripts/klippy-requirements.txt ]; then
+    cd "${HOME}" && git clone "$KLIPPER_REPO"
+  fi
   status_msg "Download complete!"
 
   ### step 2: create python virtualenv
